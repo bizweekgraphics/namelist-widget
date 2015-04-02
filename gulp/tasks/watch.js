@@ -2,8 +2,8 @@ var gulp = require('gulp');
 
 module.exports = function() {
 
-  gulp.watch(['./src/**/*'], ['static'])
+  gulp.watch(['./public/**/*'], ['browser-sync'])
 
-  gulp.watch('./src/styles/*.scss', ['sass']);
+  gulp.watch('./public/styles/*.scss', ['sass']);
 
 }

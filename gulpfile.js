@@ -14,4 +14,4 @@ var gulp = require('./gulp')([
   'static'
 ])
 
-gulp.task('default', ['static', 'sass', 'browser-sync', 'watch']);
+gulp.task('default', ['sass', 'browser-sync', 'watch']);
