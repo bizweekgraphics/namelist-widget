@@ -5,13 +5,14 @@ d3.json('static/names.json', function(error, names) {
     .enter()
       .append("div")
       .classed("name", true)
-      .append("div")
+
+  var nameListInner = nameList.append("div")
       .classed("name-inner", true);
 
   var properties = Object.keys(names[0]);
 
   properties.forEach(function(value, index) {
-    nameList.append("p")
+    nameListInner.append("p")
       .attr("data-property", value)
       .text(function(d) { return d[value]; });
   })
@@ -26,6 +27,11 @@ d3.json('static/names.json', function(error, names) {
       .on("mouseover", function(d) {
         d3.selectAll('.name p').classed('selected', false);
         d3.selectAll('.name p[data-property="'+d+'"]').classed('selected', true);
+      })
+      .on("click", function(d) {
+        nameList.sort(function(a, b) {
+          return a[d] < b[d] ? -1 : a[d] > b[d] ? 1 : a[d] >= b[d] ? 0 : NaN;
+        });
       });
 
 })

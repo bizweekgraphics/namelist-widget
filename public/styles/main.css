@@ -14,7 +14,7 @@ body {
   border-bottom: 1px solid black;
   position: fixed;
   width: 100%;
-  z-index: 99;
+  z-index: 1;
   background: rgba(255, 255, 255, 0.9); }
   #properties .property {
     display: inline-block;
@@ -23,7 +23,8 @@ body {
 
 #names {
   font-size: .75em;
-  text-align: center; }
+  text-align: center;
+  padding-top: 8em; }
   #names .name {
     width: 16em;
     height: 4em;
@@ -49,7 +50,7 @@ body {
       top: -50%;
       background: white;
       border: 1px solid black;
-      z-index: 999;
+      z-index: 2;
       padding: 10px; }
     #names .name:hover p {
       display: block; }
