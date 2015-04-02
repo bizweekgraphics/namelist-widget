@@ -1,4 +1,55 @@
+* {
+  box-sizing: border-box; }
+
 body {
   background: white;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #333; }
+  color: #333;
+  margin: 0;
+  padding: 0; }
+
+#properties {
+  padding: 2em;
+  margin-bottom: 2em;
+  border-bottom: 1px solid black;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  background: rgba(255, 255, 255, 0.9); }
+  #properties .property {
+    display: inline-block;
+    text-align: center;
+    cursor: pointer; }
+
+#names {
+  font-size: .75em;
+  text-align: center; }
+  #names .name {
+    width: 16em;
+    height: 4em;
+    vertical-align: top;
+    display: inline-block;
+    position: relative; }
+    #names .name p {
+      margin: 0;
+      display: none;
+      top: 1.33333em;
+      text-align: center; }
+      #names .name p[data-property="Name"] {
+        display: block;
+        font-weight: bold; }
+      #names .name p.selected {
+        display: block; }
+    #names .name:hover .name-inner {
+      position: absolute;
+      width: 150%;
+      height: 200%;
+      font-size: 1.2em;
+      left: -25%;
+      top: -50%;
+      background: white;
+      border: 1px solid black;
+      z-index: 999;
+      padding: 10px; }
+    #names .name:hover p {
+      display: block; }
