@@ -1,0 +1,17 @@
+{
+  "name": "modelis",
+  "version": "0.0.0",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.2.0",
+    "bootstrap-sass-official": "~3.3.1"
+  }
+}
