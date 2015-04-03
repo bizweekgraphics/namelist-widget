@@ -1,34 +1,52 @@
+$font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
 * {
   box-sizing: border-box;
 }
 
 body {
   background: white;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: $font;
   color: #333;
   margin: 0;
   padding: 0;
 }
 
 #properties {
-  padding: 2em;
   margin-bottom: 2em;
   border-bottom: 1px solid black;
   position: fixed;
   width: 100%;
   z-index: 1;
   background: rgba(255,255,255,.9);
+
   .property {
     display: inline-block;
     text-align: center;
     cursor: pointer;
+    padding: 1em;
+
+    &:hover {
+      background: #000;
+      color: #fff;
+    }
+  }
+
+  input {
+    font-size: 1em;
+    font-family: $font;
+    text-align: center;
+    padding: 1em;
+    box-shadow: none;
+    border: none;
+    border-right: 1px dotted gray;
   }
 }
 
 #names {
   font-size: .5em;
   text-align: center;
-  padding-top: 100px;
+  padding: 75px 0;
 
   .name {
     width: 12em;

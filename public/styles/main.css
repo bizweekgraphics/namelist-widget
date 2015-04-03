@@ -9,7 +9,6 @@ body {
   padding: 0; }
 
 #properties {
-  padding: 2em;
   margin-bottom: 2em;
   border-bottom: 1px solid black;
   position: fixed;
@@ -19,12 +18,24 @@ body {
   #properties .property {
     display: inline-block;
     text-align: center;
-    cursor: pointer; }
+    cursor: pointer;
+    padding: 1em; }
+    #properties .property:hover {
+      background: #000;
+      color: #fff; }
+  #properties input {
+    font-size: 1em;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: center;
+    padding: 1em;
+    box-shadow: none;
+    border: none;
+    border-right: 1px dotted gray; }
 
 #names {
   font-size: .5em;
   text-align: center;
-  padding-top: 100px; }
+  padding: 75px 0; }
   #names .name {
     width: 12em;
     height: 2.5em;

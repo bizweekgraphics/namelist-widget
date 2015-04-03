@@ -9,6 +9,8 @@ var config = {
 
 d3.json('static/names.json', function(error, names) {
 
+  console.log(names);
+
   var nameList = d3.select("#names").selectAll(".name")
       .data(names)
     .enter()
@@ -26,22 +28,33 @@ d3.json('static/names.json', function(error, names) {
       .text(function(d) { return d[value]; });
   })
 
+  d3.select("#properties").append("input")
+      .attr("placeholder", "Search")
+      .style("width", (100/(properties.length+1))+"%")
+      .on("keyup", function() {
+        var value = this.value.toLowerCase();
+        nameList.style("display", "inline-block");
+        nameList.filter(function(d) {
+          // case-insensitive; searches all `properties` of `names`
+          return properties.reduce(function(a,b) { return a && d[b].toLowerCase().indexOf(value) == -1 }, true);
+        }).style("display", "none");
+      });
+
   d3.select("#properties").selectAll(".property")
       .data(properties)
       .enter()
       .append("div")
       .classed("property", true)
-      .style("width", (100/properties.length)+"%")
+      .style("width", (100/(properties.length+1))+"%")
       .text(function(d) { return d; })
-      .on("mouseover", function(d) {
+      .on("click", function(d) {
+        nameList.sort(function(a, b) {
+          // sort by specified property `d` and then by `config.key`
+          return a[d] < b[d] ? -1 : a[d] > b[d] ? 1 : a[d] >= b[d] ? (a[config.key] < b[config.key] ? -1 : a[config.key] > b[config.key] ? 1 : 0) : NaN;
+        });
         d3.selectAll('.name p').classed('selected', false);
         d3.selectAll('.name p[data-property="'+d+'"]').classed('selected', true);
         nameListInner.style("background", function(dd) { return config.scales[d] ? config.scales[d](dd[d]) : "#ffffff"; });
-      })
-      .on("click", function(d) {
-        nameList.sort(function(a, b) {
-          return a[d] < b[d] ? -1 : a[d] > b[d] ? 1 : a[d] >= b[d] ? (a["Name"] < b["Name"] ? -1 : a["Name"] > b["Name"] ? 1 : 0) : NaN;
-        });
       });
 
 })
