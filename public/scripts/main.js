@@ -7,6 +7,8 @@ var config = {
   }
 }
 
+// this is currently using an old 2004 USA Today list
+// http://usatoday30.usatoday.com/sports/golf/masters/2002-09-27-augusta-list.htm
 d3.json('static/names.json', function(error, names) {
 
   console.log(names);

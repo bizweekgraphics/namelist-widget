@@ -38,13 +38,14 @@ body {
   padding: 75px 0; }
   #names .name {
     width: 12em;
-    height: 2.5em;
+    height: 2.8em;
     vertical-align: top;
     display: inline-block;
     position: relative; }
     #names .name .name-inner {
       overflow: hidden;
-      height: 100%; }
+      height: 100%;
+      padding: 2px 0; }
     #names .name p {
       margin: 0;
       display: none;

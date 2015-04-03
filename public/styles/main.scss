@@ -50,7 +50,7 @@ body {
 
   .name {
     width: 12em;
-    height: 2.5em;
+    height: 2.8em;
     vertical-align: top;
     display: inline-block;
     position: relative;
@@ -58,6 +58,7 @@ body {
     .name-inner {
       overflow: hidden;
       height: 100%;
+      padding: 2px 0;
     }
 
     p {
