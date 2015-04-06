@@ -33,27 +33,32 @@ body {
     border-right: 1px dotted gray; }
 
 #names {
-  font-size: .5em;
+  font-size: 1em;
   text-align: center;
   padding: 75px 0; }
   #names .name {
     width: 12em;
-    height: 2.8em;
+    height: 4em;
     vertical-align: top;
     display: inline-block;
     position: relative; }
     #names .name .name-inner {
       overflow: hidden;
       height: 100%;
-      padding: 2px 0; }
+      padding: 5px; }
     #names .name p {
       margin: 0;
       display: none;
       top: 1.33333em;
-      text-align: center; }
+      text-align: left;
+      font-style: italic;
+      color: #888;
+      font-size: .8em; }
       #names .name p[data-property="Name"] {
+        font-size: 1em;
+        color: black;
         display: block;
-        font-weight: bold; }
+        font-style: normal; }
       #names .name p.selected {
         display: block; }
     #names .name:hover .name-inner {

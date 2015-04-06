@@ -3,7 +3,7 @@ var config = {
   "scales": {
     "Name": function() { return "#ffffff"; },
     "Age": d3.scale.linear().domain([0,100]).range(["#ffffff", "#ff00ff"]).clamp(true),
-    "State": d3.scale.ordinal().range(["#2800D7", "#FA1E64", "#FF6564", "#5C42AB", "#00B9E7", "#00DC3C", "#FB8E1E"])
+    "State": d3.scale.ordinal().range(["#FA1E64", "#FF6564", "#00B9E7", "#00DC3C", "#FB8E1E"])
   }
 }
 
