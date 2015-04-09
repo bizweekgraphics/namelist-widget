@@ -13,8 +13,8 @@ body {
 }
 
 #search {
-  margin-bottom: 2em;
-  border-bottom: 1px solid black;
+  margin-bottom: 1em;
+  border-bottom: 1px solid #ddd;
   width: 100%;
   z-index: 1;
   background: rgba(255,255,255,.9);
@@ -70,7 +70,7 @@ body {
       .name-inner {
         position: relative;
         height: auto;
-        border: 1px solid black;
+        border: 1px solid #ddd;
         z-index: 2;
       }
 
