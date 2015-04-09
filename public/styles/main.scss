@@ -1,4 +1,6 @@
 $font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-sans: "HaasText", Arial, sans-serif;
+$font-sans-bold: "HaasDisplayBold", "Helvetica";
 
 * {
   box-sizing: border-box;
@@ -31,6 +33,7 @@ body {
 #names {
   font-size: 1em;
   text-align: center;
+  font-family: $font-sans;
 
   .name {
     width: 11em;
@@ -45,7 +48,6 @@ body {
       height: 100%;
       padding: 5px;
       background: white;
-      border: 1px solid white;
     }
 
     p {
@@ -53,11 +55,12 @@ body {
 
       &[data-property="name"] {
         display: block;
+        font-family: $font-sans-bold;
       }
 
       &[data-property="topline"], &[data-property="location"], &[data-property="affiliation"] {
-        font-size: .8em;
-        color: #888;
+        // font-size: .8em;
+        // color: #888;
       }
 
       &[data-property="location"], &[data-property="affiliation"] {
@@ -70,8 +73,15 @@ body {
       .name-inner {
         position: relative;
         height: auto;
-        border: 1px solid #ddd;
         z-index: 2;
+
+        -webkit-box-shadow: 1px 1px 5px 0px rgba(158, 158, 158, 0.75);
+        -moz-box-shadow:    1px 1px 5px 0px rgba(158, 158, 158, 0.75);
+        box-shadow:         1px 1px 5px 0px rgba(158, 158, 158, 0.75);
+
+        background: black;
+        color: white;
+
       }
 
       p {
@@ -85,6 +95,7 @@ body {
   .name {
     width: 11em;
     height: 5em !important;
+
     p {
       display: block !important;
     }

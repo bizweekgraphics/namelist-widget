@@ -23,7 +23,8 @@ body {
 
 #names {
   font-size: 1em;
-  text-align: center; }
+  text-align: center;
+  font-family: "HaasText", Arial, sans-serif; }
   #names .name {
     width: 11em;
     height: 3em;
@@ -35,22 +36,23 @@ body {
       overflow: hidden;
       height: 100%;
       padding: 5px;
-      background: white;
-      border: 1px solid white; }
+      background: white; }
     #names .name p {
       margin: 0; }
       #names .name p[data-property="name"] {
-        display: block; }
-      #names .name p[data-property="topline"], #names .name p[data-property="location"], #names .name p[data-property="affiliation"] {
-        font-size: .8em;
-        color: #888; }
+        display: block;
+        font-family: "HaasDisplayBold", "Helvetica"; }
       #names .name p[data-property="location"], #names .name p[data-property="affiliation"] {
         display: none; }
     #names .name:hover .name-inner {
       position: relative;
       height: auto;
-      border: 1px solid #ddd;
-      z-index: 2; }
+      z-index: 2;
+      -webkit-box-shadow: 1px 1px 5px 0px rgba(158, 158, 158, 0.75);
+      -moz-box-shadow: 1px 1px 5px 0px rgba(158, 158, 158, 0.75);
+      box-shadow: 1px 1px 5px 0px rgba(158, 158, 158, 0.75);
+      background: black;
+      color: white; }
     #names .name:hover p {
       display: block !important; }
 
