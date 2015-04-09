@@ -16,22 +16,44 @@ body {
 
 #search {
   margin-bottom: 1em;
-  border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
   width: 100%;
   z-index: 1;
   background: rgba(255,255,255,.9);
 
   input {
     font-size: 1em;
-    font-family: $font;
+    font-family: $font-sans;
     padding: 1em;
     box-shadow: none;
     border: none;
   }
 }
 
+#filters {
+  text-align: center;
+  font-family: $font-sans;
+  margin-bottom: 1em;
+
+  .filter {
+    background: #ccc;
+    display: inline-block;
+    width: 11em;
+    padding: .5em;
+    margin: .5em;
+  }
+  .filter:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+  }
+  .filter.selected {
+    background: black;
+    color: white;
+  }
+}
+
 #names {
-  font-size: 1em;
   text-align: center;
   font-family: $font-sans;
 
@@ -46,7 +68,7 @@ body {
     .name-inner {
       overflow: hidden;
       height: 100%;
-      padding: 5px;
+      padding: .5em;
       background: white;
     }
 
