@@ -4,6 +4,12 @@ var config = {
     "Name": function() { return "#ffffff"; },
     "Age": d3.scale.linear().domain([0,100]).range(["#ffffff", "#ff00ff"]).clamp(true),
     "State": d3.scale.ordinal().range(["#FA1E64", "#FF6564", "#00B9E7", "#00DC3C", "#FB8E1E"])
+  },
+  "displayFields": {
+    "name": function(d) { return d["First"] + " " + d["Last"] + " " + d["Etc."]; },
+    "topline": function(d) { return d["Topline"]; },
+    "location": function(d) { return d["City"] + ", " + d["State"]; },
+    "affiliation": function(d) { return d["Company"]; }
   }
 }
 
@@ -23,18 +29,20 @@ d3.json('static/names.json', function(error, names) {
       .classed("name-inner", true);
 
   var properties = Object.keys(names[0]);
+  var displayFields = Object.keys(config.displayFields);
 
-  properties.forEach(function(value, index) {
+  displayFields.forEach(function(value, index) {
     nameListInner.append("p")
       .attr("data-property", value)
-      .text(function(d) { return d[value]; });
+      .html(function(d) { return config.displayFields[value](d); });
   })
 
-  d3.select("#properties").append("input")
-      .attr("placeholder", "Search")
-      .style("width", (100/(properties.length+1))+"%")
+  d3.select("#search").append("input")
+      .attr("placeholder", "Search for names, titles, companies, locations...")
+      .style("width", "100%")
       .on("keyup", function() {
         var value = this.value.toLowerCase();
+        d3.select("#names").classed("searching", value.length > 0);
         nameList.style("display", "inline-block");
         nameList.filter(function(d) {
           // case-insensitive; searches all `properties` of `names`
@@ -42,21 +50,11 @@ d3.json('static/names.json', function(error, names) {
         }).style("display", "none");
       });
 
-  d3.select("#properties").selectAll(".property")
-      .data(properties)
-      .enter()
-      .append("div")
-      .classed("property", true)
-      .style("width", (100/(properties.length+1))+"%")
-      .text(function(d) { return d; })
-      .on("click", function(d) {
-        nameList.sort(function(a, b) {
-          // sort by specified property `d` and then by `config.key`
-          return a[d] < b[d] ? -1 : a[d] > b[d] ? 1 : a[d] >= b[d] ? (a[config.key] < b[config.key] ? -1 : a[config.key] > b[config.key] ? 1 : 0) : NaN;
-        });
-        d3.selectAll('.name p').classed('selected', false);
-        d3.selectAll('.name p[data-property="'+d+'"]').classed('selected', true);
-        nameListInner.style("background", function(dd) { return config.scales[d] ? config.scales[d](dd[d]) : "#ffffff"; });
-      });
+  /*
+  nameList.sort(function(a, b) {
+    // sort by specified property `d` and then by `config.key`
+    return a[d] < b[d] ? -1 : a[d] > b[d] ? 1 : a[d] >= b[d] ? (a[config.key] < b[config.key] ? -1 : a[config.key] > b[config.key] ? 1 : 0) : NaN;
+  });
+  */
 
 })

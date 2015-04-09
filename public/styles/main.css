@@ -8,67 +8,54 @@ body {
   margin: 0;
   padding: 0; }
 
-#properties {
+#search {
   margin-bottom: 2em;
   border-bottom: 1px solid black;
-  position: fixed;
   width: 100%;
   z-index: 1;
   background: rgba(255, 255, 255, 0.9); }
-  #properties .property {
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    padding: 1em; }
-    #properties .property:hover {
-      background: #000;
-      color: #fff; }
-  #properties input {
+  #search input {
     font-size: 1em;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    text-align: center;
     padding: 1em;
     box-shadow: none;
-    border: none;
-    border-right: 1px dotted gray; }
+    border: none; }
 
 #names {
   font-size: 1em;
-  text-align: center;
-  padding: 75px 0; }
+  text-align: center; }
   #names .name {
-    width: 12em;
-    height: 4em;
+    width: 11em;
+    height: 3em;
     vertical-align: top;
     display: inline-block;
-    position: relative; }
+    position: relative;
+    text-align: left; }
     #names .name .name-inner {
       overflow: hidden;
       height: 100%;
-      padding: 5px; }
+      padding: 5px;
+      background: white;
+      border: 1px solid white; }
     #names .name p {
-      margin: 0;
-      display: none;
-      top: 1.33333em;
-      text-align: left;
-      font-style: italic;
-      color: #888;
-      font-size: .8em; }
-      #names .name p[data-property="Name"] {
-        font-size: 1em;
-        color: black;
-        display: block;
-        font-style: normal; }
-      #names .name p.selected {
+      margin: 0; }
+      #names .name p[data-property="name"] {
         display: block; }
+      #names .name p[data-property="topline"], #names .name p[data-property="location"], #names .name p[data-property="affiliation"] {
+        font-size: .8em;
+        color: #888; }
+      #names .name p[data-property="location"], #names .name p[data-property="affiliation"] {
+        display: none; }
     #names .name:hover .name-inner {
       position: relative;
       height: auto;
-      transform: scale(1.5);
-      background: white;
       border: 1px solid black;
-      z-index: 2;
-      padding: 10px;
-      pointer-events: none; }
+      z-index: 2; }
     #names .name:hover p {
-      display: block; }
+      display: block !important; }
+
+.searching .name {
+  width: 11em;
+  height: 5em !important; }
+  .searching .name p {
+    display: block !important; }
