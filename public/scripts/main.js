@@ -1,4 +1,6 @@
-// configure filters (buttons) and display fields
+// configure filters (buttons) and display fields (for each name)
+// filter key names are used for button labels
+// display field key names are used for a data attribute for css
 var config = {
   "filters": {
     "All": function(d) { return true; },
@@ -32,7 +34,7 @@ d3.json('static/names.json', function(error, names) {
       .classed("name-inner", true);
 
   // append configured fields to each name
-  nameListInner.selectAll("p")
+  var nameListProperties = nameListInner.selectAll("p")
       .data(displayFields)
     .enter()
       .append("p")
@@ -60,8 +62,8 @@ d3.json('static/names.json', function(error, names) {
   function sortAndFilter(d) {
     // fade everything out
     nameList.style("opacity", .3);
+    // sort first by filter, and then by name (Last, First)
     nameList.sort(function(a,b) {
-      // sort first by filter, and then by name (Last, First)
       if (config.filters[d](a) == config.filters[d](b)) {
         return a["Last"] < b["Last"] ? -1 : a["Last"] > b["Last"] ? 1 : (a["First"] < b["First"] ? -1 : 1);
       } else {
