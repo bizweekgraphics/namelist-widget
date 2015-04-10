@@ -111,7 +111,9 @@ body {
 
 @media (max-width: 500px) {
   .inner-content-header {
-    padding: 3em 0; } }
+    padding: 3em 0; }
+  #filters .filter, #names .name {
+    width: 9em; } }
 
 #footer .container {
   text-transform: uppercase; }

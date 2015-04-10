@@ -167,6 +167,9 @@ body {
   .inner-content-header {
     padding: 3em 0;
   }
+  #filters .filter, #names .name {
+    width: 9em;
+  }
 }
 
 #footer .container {
