@@ -39,13 +39,6 @@ d3.json('static/names.json', function(error, names) {
       .attr("data-property", function(d) { return d; })
       .html(function(d) { return config.displayFields[d](d3.select(this.parentNode).data()[0]); });
 
-  // append configured fields to each name
-  // displayFields.forEach(function(value, index) {
-  //   nameListInner.append("p")
-  //     .attr("data-property", value)
-  //     .html(function(d) { return config.displayFields[value](d); });
-  // });
-
   // add filter buttons
   var filterButtons = d3.select("#filters").selectAll(".filter")
       .data(filters)
