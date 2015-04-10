@@ -1,4 +1,6 @@
 $font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-sans: "HaasText", Arial, sans-serif;
+$font-sans-bold: "HaasDisplayBold", "Helvetica";
 
 * {
   box-sizing: border-box;
@@ -12,86 +14,123 @@ body {
   padding: 0;
 }
 
-#properties {
-  margin-bottom: 2em;
-  border-bottom: 1px solid black;
-  position: fixed;
+.body-text {
+  max-width: 800px;
+  margin: 0 auto 52px;
+  padding: 0 10px 0 10px;
+}
+
+#search {
+  margin-bottom: 1em;
   width: 100%;
   z-index: 1;
   background: rgba(255,255,255,.9);
-
-  .property {
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    padding: 1em;
-
-    &:hover {
-      background: #000;
-      color: #fff;
-    }
-  }
+  text-align: center;
 
   input {
     font-size: 1em;
-    font-family: $font;
-    text-align: center;
+    font-family: $font-sans;
     padding: 1em;
+    border: 1px solid #ddd !important;
     box-shadow: none;
     border: none;
-    border-right: 1px dotted gray;
+    display: inline-block;
+    max-width: 30em;
+  }
+}
+
+#filters {
+  text-align: center;
+  font-family: $font-sans;
+  margin-bottom: 1em;
+
+  .filter {
+    background: #ccc;
+    display: inline-block;
+    width: 11em;
+    padding: 1em;
+    margin: .5em;
+  }
+  .filter:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+  }
+  .filter.selected {
+    background: black;
+    color: white;
   }
 }
 
 #names {
-  font-size: .5em;
   text-align: center;
-  padding: 75px 0;
+  font-family: $font-sans;
 
   .name {
-    width: 12em;
-    height: 2.5em;
+    width: 11em;
+    height: 3em;
     vertical-align: top;
     display: inline-block;
     position: relative;
+    text-align: left;
 
     .name-inner {
       overflow: hidden;
       height: 100%;
+      padding: .5em;
+      background: white;
     }
 
     p {
       margin: 0;
-      display: none;
-      top: 1.3333333333em;
-      text-align: center;
 
-      &[data-property="Name"] {
+      &[data-property="name"] {
         display: block;
-        font-weight: bold;
+        font-family: $font-sans-bold;
       }
 
-      &.selected {
-        display: block;
+      &[data-property="topline"], &[data-property="location"], &[data-property="affiliation"] {
+        // font-size: .8em;
+        // color: #888;
+      }
+
+      &[data-property="location"], &[data-property="affiliation"] {
+        display: none;
       }
     }
 
     &:hover {
 
+      opacity: 1 !important;
+
       .name-inner {
         position: relative;
         height: auto;
-        transform: scale(1.5);
-        background: white;
-        border: 1px solid black;
         z-index: 2;
-        padding: 10px;
-        pointer-events: none;
+
+        -webkit-box-shadow: 1px 1px 5px 0px rgba(158, 158, 158, 0.75);
+        -moz-box-shadow:    1px 1px 5px 0px rgba(158, 158, 158, 0.75);
+        box-shadow:         1px 1px 5px 0px rgba(158, 158, 158, 0.75);
+
+        background: black;
+        color: white;
+
       }
 
       p {
-        display: block;
+        display: block !important;
       }
+    }
+  }
+}
+
+.searching {
+  .name {
+    width: 11em;
+    height: 6.5em !important;
+
+    p {
+      display: block !important;
     }
   }
 }
