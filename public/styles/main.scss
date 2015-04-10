@@ -20,16 +20,22 @@ body {
   background-position: center;
   padding: 6em 0;
 
+  @media (max-width: 500px) {
+    padding: 3em 0;
+  }
+
   span.highlighted {
     background-color: white;
   }
   .timestamp, .dek {
     color: white;
   }
-
   .timestamp {
     width: auto;
     max-width: 500px;
+  }
+  .dek {
+    margin-bottom: 0;
   }
 }
 
@@ -45,6 +51,13 @@ body {
     &:first-child {
       margin-top: 0;
     }
+  }
+}
+
+#footer .container {
+  text-transform: uppercase;
+  .source.correction {
+    text-transform: none;
   }
 }
 
@@ -78,6 +91,9 @@ body {
     width: 11em;
     padding: 1em;
     margin: .5em;
+    @media (max-width: 500px) {
+      width: 9em;
+    }
   }
   .filter:hover {
     background: black;
@@ -107,86 +123,75 @@ body {
       height: 100%;
       padding: .5em;
       background: white;
-    }
-
-    p {
-      margin: 0;
-
-      &[data-property="name"] {
-        display: block;
-        font-family: $font-sans-bold;
-      }
-
-      &[data-property="topline"], &[data-property="location"], &[data-property="affiliation"] {
-        // font-size: .8em;
-        // color: #888;
-      }
-
-      &[data-property="location"], &[data-property="affiliation"] {
-        display: none;
+      p {
+        margin: 0;
+        &[data-property="name"] {
+          font-family: $font-sans-bold;
+        }
       }
     }
 
     &:hover {
-
       opacity: 1 !important;
-
       .name-inner {
         position: relative;
         height: auto;
         z-index: 2;
-
+        background: black;
+        color: white;
         -webkit-box-shadow: 1px 1px 5px 0px rgba(158, 158, 158, 0.75);
         -moz-box-shadow:    1px 1px 5px 0px rgba(158, 158, 158, 0.75);
         box-shadow:         1px 1px 5px 0px rgba(158, 158, 158, 0.75);
-
-        background: black;
-        color: white;
-
-      }
-
-      p {
-        display: block !important;
       }
     }
   }
-}
 
-.searching {
-  .name {
-    width: 11em;
-    height: 6.5em !important;
-
-    p {
-      display: block !important;
+  &.searching {
+    .name {
+      width: 11em;
+      height: 6.5em;
     }
   }
 }
 
-#names[data-filter="Sports"], #names[data-filter="Finance"] {
-  .name {
-    height: 4em;
-    p[data-property="topline"] {
-      display: none;
-    }
-    p[data-property="affiliation"] {
-      display: block;
-    }
-  }
+// which display fields should show for which views?
+
+#names .name .name-inner {
+  p[data-property="name"] { display: block; }
+  p[data-property="topline"] { display: block; }
+  p[data-property="company"] { display: none; }
+  p[data-property="affiliation"]  { display: none; }
+  p[data-property="location"]  { display: none; }
 }
 
-@media (max-width: 500px) {
-  .inner-content-header {
-    padding: 3em 0;
-  }
-  #filters .filter, #names .name {
-    width: 9em;
-  }
+#names .name:hover .name-inner {
+  p[data-property="name"] { display: block; }
+  p[data-property="topline"] { display: block; }
+  p[data-property="company"] { display: none; }
+  p[data-property="affiliation"]  { display: block; }
+  p[data-property="location"]  { display: block; }
 }
 
-#footer .container {
-  text-transform: uppercase;
-  .source.correction {
-    text-transform: none;
-  }
+#names[data-filter="Sports"] .name .name-inner {
+  p[data-property="name"] { display: block; }
+  p[data-property="topline"] { display: none; }
+  p[data-property="company"] { display: block; }
+  p[data-property="affiliation"]  { display: none; }
+  p[data-property="location"]  { display: none; }
+}
+
+#names[data-filter="Finance"] .name .name-inner {
+  p[data-property="name"] { display: block; }
+  p[data-property="topline"] { display: none; }
+  p[data-property="company"] { display: block; }
+  p[data-property="affiliation"]  { display: none; }
+  p[data-property="location"]  { display: none; }
+}
+
+#names.searching .name .name-inner {
+  p[data-property="name"] { display: block; }
+  p[data-property="topline"] { display: block; }
+  p[data-property="company"] { display: none; }
+  p[data-property="affiliation"]  { display: block; }
+  p[data-property="location"]  { display: block; }
 }

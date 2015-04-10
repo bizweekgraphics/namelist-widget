@@ -13,6 +13,9 @@ body {
   background-size: cover;
   background-position: center;
   padding: 6em 0; }
+  @media (max-width: 500px) {
+    .inner-content-header {
+      padding: 3em 0; } }
   .inner-content-header span.highlighted {
     background-color: white; }
   .inner-content-header .timestamp, .inner-content-header .dek {
@@ -20,6 +23,8 @@ body {
   .inner-content-header .timestamp {
     width: auto;
     max-width: 500px; }
+  .inner-content-header .dek {
+    margin-bottom: 0; }
 
 .body-text {
   max-width: 800px;
@@ -32,6 +37,11 @@ body {
     line-height: 1.618em; }
     .body-text p:first-child {
       margin-top: 0; }
+
+#footer .container {
+  text-transform: uppercase; }
+  #footer .container .source.correction {
+    text-transform: none; }
 
 #search {
   margin-bottom: 1em;
@@ -59,6 +69,9 @@ body {
     width: 11em;
     padding: 1em;
     margin: .5em; }
+    @media (max-width: 500px) {
+      #filters .filter {
+        width: 9em; } }
   #filters .filter:hover {
     background: black;
     color: white;
@@ -82,47 +95,76 @@ body {
       height: 100%;
       padding: .5em;
       background: white; }
-    #names .name p {
-      margin: 0; }
-      #names .name p[data-property="name"] {
-        display: block;
-        font-family: "HaasDisplayBold", "Helvetica"; }
-      #names .name p[data-property="location"], #names .name p[data-property="affiliation"] {
-        display: none; }
+      #names .name .name-inner p {
+        margin: 0; }
+        #names .name .name-inner p[data-property="name"] {
+          font-family: "HaasDisplayBold", "Helvetica"; }
     #names .name:hover {
       opacity: 1 !important; }
       #names .name:hover .name-inner {
         position: relative;
         height: auto;
         z-index: 2;
+        background: black;
+        color: white;
         -webkit-box-shadow: 1px 1px 5px 0px rgba(158, 158, 158, 0.75);
         -moz-box-shadow: 1px 1px 5px 0px rgba(158, 158, 158, 0.75);
-        box-shadow: 1px 1px 5px 0px rgba(158, 158, 158, 0.75);
-        background: black;
-        color: white; }
-      #names .name:hover p {
-        display: block !important; }
+        box-shadow: 1px 1px 5px 0px rgba(158, 158, 158, 0.75); }
+  #names.searching .name {
+    width: 11em;
+    height: 6.5em; }
 
-.searching .name {
-  width: 11em;
-  height: 6.5em !important; }
-  .searching .name p {
-    display: block !important; }
+#names .name .name-inner p[data-property="name"] {
+  display: block; }
+#names .name .name-inner p[data-property="topline"] {
+  display: block; }
+#names .name .name-inner p[data-property="company"] {
+  display: none; }
+#names .name .name-inner p[data-property="affiliation"] {
+  display: none; }
+#names .name .name-inner p[data-property="location"] {
+  display: none; }
 
-#names[data-filter="Sports"] .name, #names[data-filter="Finance"] .name {
-  height: 4em; }
-  #names[data-filter="Sports"] .name p[data-property="topline"], #names[data-filter="Finance"] .name p[data-property="topline"] {
-    display: none; }
-  #names[data-filter="Sports"] .name p[data-property="affiliation"], #names[data-filter="Finance"] .name p[data-property="affiliation"] {
-    display: block; }
+#names .name:hover .name-inner p[data-property="name"] {
+  display: block; }
+#names .name:hover .name-inner p[data-property="topline"] {
+  display: block; }
+#names .name:hover .name-inner p[data-property="company"] {
+  display: none; }
+#names .name:hover .name-inner p[data-property="affiliation"] {
+  display: block; }
+#names .name:hover .name-inner p[data-property="location"] {
+  display: block; }
 
-@media (max-width: 500px) {
-  .inner-content-header {
-    padding: 3em 0; }
-  #filters .filter, #names .name {
-    width: 9em; } }
+#names[data-filter="Sports"] .name .name-inner p[data-property="name"] {
+  display: block; }
+#names[data-filter="Sports"] .name .name-inner p[data-property="topline"] {
+  display: none; }
+#names[data-filter="Sports"] .name .name-inner p[data-property="company"] {
+  display: block; }
+#names[data-filter="Sports"] .name .name-inner p[data-property="affiliation"] {
+  display: none; }
+#names[data-filter="Sports"] .name .name-inner p[data-property="location"] {
+  display: none; }
 
-#footer .container {
-  text-transform: uppercase; }
-  #footer .container .source.correction {
-    text-transform: none; }
+#names[data-filter="Finance"] .name .name-inner p[data-property="name"] {
+  display: block; }
+#names[data-filter="Finance"] .name .name-inner p[data-property="topline"] {
+  display: none; }
+#names[data-filter="Finance"] .name .name-inner p[data-property="company"] {
+  display: block; }
+#names[data-filter="Finance"] .name .name-inner p[data-property="affiliation"] {
+  display: none; }
+#names[data-filter="Finance"] .name .name-inner p[data-property="location"] {
+  display: none; }
+
+#names.searching .name .name-inner p[data-property="name"] {
+  display: block; }
+#names.searching .name .name-inner p[data-property="topline"] {
+  display: block; }
+#names.searching .name .name-inner p[data-property="company"] {
+  display: none; }
+#names.searching .name .name-inner p[data-property="affiliation"] {
+  display: block; }
+#names.searching .name .name-inner p[data-property="location"] {
+  display: block; }

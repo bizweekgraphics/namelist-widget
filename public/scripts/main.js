@@ -13,6 +13,7 @@ var config = {
   "displayFields": {
     "name": function(d) { return d["First"] + " " + d["Last"] + " " + d["Suffix"]; },
     "topline": function(d) { return d["Industry"]; },
+    "company": function(d) { return d["Company"]; },
     "affiliation": function(d) { return [d["Title"], d["Company"]].filter(function(d) { return d.length > 0; }).join(", "); },
     "location": function(d) { return [d["City"], d["State"]].filter(function(d) { return d.length > 0; }).join(", "); }
   }
