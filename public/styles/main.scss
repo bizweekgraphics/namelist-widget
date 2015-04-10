@@ -26,6 +26,11 @@ body {
   .timestamp, .dek {
     color: white;
   }
+
+  .timestamp {
+    width: auto;
+    max-width: 500px;
+  }
 }
 
 .body-text {
