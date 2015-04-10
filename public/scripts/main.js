@@ -29,7 +29,8 @@ d3.json('static/names.json', function(error, names) {
       .data(names)
     .enter()
       .append("div")
-      .classed("name", true);
+      .classed("name", true)
+      .style("width", function(d) { return (100/~~(d3.select("#names").node().offsetWidth / 150))+"%"; });
 
   // an inner div is used for expansion on rollover
   var nameListInner = nameList.append("div")

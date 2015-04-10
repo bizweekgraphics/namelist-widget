@@ -68,7 +68,7 @@ body {
     color: white; }
 
 #names {
-  text-align: center;
+  text-align: left;
   font-family: "HaasText", Arial, sans-serif; }
   #names .name {
     width: 11em;
