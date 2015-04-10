@@ -5,8 +5,9 @@ var config = {
   "filters": {
     "All": function(d) { return true; },
     "CEOs": function(d) { return d["Title"].indexOf("CEO") !== -1 },
-    "Women": function(d) { return d["Misc"].indexOf("Woman") !== -1 },
-    "Minorities": function(d) { return d["Misc"].indexOf("Black") !== -1 }
+    "Finance": function(d) { return d["Industry"].indexOf("Financial Services") !== -1 || d["Industry"].indexOf("Private Equity") !== -1 || d["Industry"].indexOf("Money Management") !== -1; },
+    "Sports": function(d) { return d["Industry"].indexOf("Golf") !== -1 || d["Industry"].indexOf("Sports") !== -1; },
+    "Women": function(d) { return d["Misc"].indexOf("Woman") !== -1 }
   },
   "displayFields": {
     "name": function(d) { return d["First"] + " " + d["Last"] + " " + d["Suffix"]; },
