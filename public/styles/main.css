@@ -17,6 +17,9 @@ body {
     background-color: white; }
   .inner-content-header .timestamp, .inner-content-header .dek {
     color: white; }
+  .inner-content-header .timestamp {
+    width: auto;
+    max-width: 500px; }
 
 .body-text {
   max-width: 800px;

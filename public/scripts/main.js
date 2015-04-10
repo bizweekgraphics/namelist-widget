@@ -7,6 +7,7 @@ var config = {
     "CEOs": function(d) { return d["Title"].indexOf("CEO") !== -1 },
     "Finance": function(d) { return d["Industry"].indexOf("Financial Services") !== -1 || d["Industry"].indexOf("Private Equity") !== -1 || d["Industry"].indexOf("Money Management") !== -1; },
     "Sports": function(d) { return d["Industry"].indexOf("Golf") !== -1 || d["Industry"].indexOf("Sports") !== -1; },
+    "Billionaires": function(d) { return d["Misc"].indexOf("Billionaire") !== -1 },
     "Women": function(d) { return d["Misc"].indexOf("Woman") !== -1 }
   },
   "displayFields": {
