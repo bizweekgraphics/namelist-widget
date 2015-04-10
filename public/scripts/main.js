@@ -29,7 +29,8 @@ d3.json('static/names.json', function(error, names) {
       .data(names)
     .enter()
       .append("div")
-      .classed("name", true);
+      .classed("name", true)
+      .style("width", function(d) { return (100/~~(d3.select("#names").node().offsetWidth / 150))+"%"; });
 
   // an inner div is used for expansion on rollover
   var nameListInner = nameList.append("div")
@@ -62,6 +63,8 @@ d3.json('static/names.json', function(error, names) {
   sortAndFilter.call(filterButtons.filter(function(d) { return d=='All'; }).node(), 'All');
 
   function sortAndFilter(d) {
+    // set data attribute on the whole names container to allow css styling
+    d3.select("#names").attr("data-filter", d);
     // fade everything out
     nameList.style("opacity", .3);
     // sort first by filter, and then by name (Last, First)

@@ -68,7 +68,7 @@ body {
     color: white; }
 
 #names {
-  text-align: center;
+  text-align: left;
   font-family: "HaasText", Arial, sans-serif; }
   #names .name {
     width: 11em;
@@ -109,6 +109,11 @@ body {
   .searching .name p {
     display: block !important; }
 
+#names[data-filter="Sports"] .name p[data-property="topline"], #names[data-filter="Finance"] .name p[data-property="topline"] {
+  display: none; }
+#names[data-filter="Sports"] .name p[data-property="affiliation"], #names[data-filter="Finance"] .name p[data-property="affiliation"] {
+  display: block; }
+
 @media (max-width: 500px) {
   .inner-content-header {
     padding: 3em 0; }
@@ -117,3 +122,5 @@ body {
 
 #footer .container {
   text-transform: uppercase; }
+  #footer .container .source.correction {
+    text-transform: none; }

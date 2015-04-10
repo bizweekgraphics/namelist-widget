@@ -91,7 +91,7 @@ body {
 }
 
 #names {
-  text-align: center;
+  text-align: left;
   font-family: $font-sans;
 
   .name {
@@ -163,6 +163,17 @@ body {
   }
 }
 
+#names[data-filter="Sports"], #names[data-filter="Finance"] {
+  .name {
+    p[data-property="topline"] {
+      display: none;
+    }
+    p[data-property="affiliation"] {
+      display: block;
+    }
+  }
+}
+
 @media (max-width: 500px) {
   .inner-content-header {
     padding: 3em 0;
@@ -174,4 +185,7 @@ body {
 
 #footer .container {
   text-transform: uppercase;
+  .source.correction {
+    text-transform: none;
+  }
 }
