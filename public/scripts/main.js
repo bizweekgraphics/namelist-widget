@@ -1,10 +1,5 @@
+// configure filters (buttons) and display fields
 var config = {
-  "key": "Name",
-  "scales": {
-    "Name": function() { return "#ffffff"; },
-    "Age": d3.scale.linear().domain([0,100]).range(["#ffffff", "#ff00ff"]).clamp(true),
-    "State": d3.scale.ordinal().range(["#FA1E64", "#FF6564", "#00B9E7", "#00DC3C", "#FB8E1E"])
-  },
   "filters": {
     "All": function(d) { return true; },
     "CEOs": function(d) { return d["Title"].indexOf("CEO") !== -1 },
@@ -14,71 +9,91 @@ var config = {
   "displayFields": {
     "name": function(d) { return d["First"] + " " + d["Last"] + " " + d["Suffix"]; },
     "topline": function(d) { return d["Industry"]; },
-    "affiliation": function(d) { return d["Title"] + ", " + d["Company"]; },
-    "location": function(d) { return d["City"] + ", " + d["State"]; }
+    "affiliation": function(d) { return [d["Title"], d["Company"]].filter(function(d) { return d.length > 0; }).join(", "); },
+    "location": function(d) { return [d["City"], d["State"]].filter(function(d) { return d.length > 0; }).join(", "); }
   }
 }
 
-// this is currently using an old 2004 USA Today list
-// http://usatoday30.usatoday.com/sports/golf/masters/2002-09-27-augusta-list.htm
 d3.json('static/names.json', function(error, names) {
 
+  var properties = Object.keys(names[0]),
+      displayFields = Object.keys(config.displayFields),
+      filters = Object.keys(config.filters);
+
+  // add name containers
   var nameList = d3.select("#names").selectAll(".name")
       .data(names)
     .enter()
       .append("div")
-      .classed("name", true)
+      .classed("name", true);
 
+  // an inner div is used for expansion on rollover
   var nameListInner = nameList.append("div")
       .classed("name-inner", true);
 
-  var properties = Object.keys(names[0]);
-  var displayFields = Object.keys(config.displayFields);
-  var filters = Object.keys(config.filters);
-
-  displayFields.forEach(function(value, index) {
-    nameListInner.append("p")
-      .attr("data-property", value)
-      .html(function(d) { return config.displayFields[value](d); });
-  })
-
-  filters.forEach(function(value, index) {
-  })
-
-  d3.select("#filters")
-    .selectAll(".filter")
-    .data(filters)
+  // append configured fields to each name
+  nameListInner.selectAll("p")
+      .data(displayFields)
     .enter()
-    .append("div")
-    .classed("filter", true)
-    .classed("selected", function(d) { return d=="All"; })
-    .text(function(d) { return d; })
-    .on("click", function(d) {
-      nameList.style("opacity", .3);
-      nameList.filter(config.filters[d]).style("opacity", 1);
-      d3.selectAll(".filter.selected").classed("selected", false);
-      d3.select(this).classed("selected", true);
-    })
+      .append("p")
+      .attr("data-property", function(d) { return d; })
+      .html(function(d) { return config.displayFields[d](d3.select(this.parentNode).data()[0]); });
 
+  // append configured fields to each name
+  // displayFields.forEach(function(value, index) {
+  //   nameListInner.append("p")
+  //     .attr("data-property", value)
+  //     .html(function(d) { return config.displayFields[value](d); });
+  // });
 
-  d3.select("#search").append("input")
-      .attr("placeholder", "Search for names, titles, companies, locations...")
+  // add filter buttons
+  var filterButtons = d3.select("#filters").selectAll(".filter")
+      .data(filters)
+    .enter()
+      .append("div")
+      .classed("filter", true)
+      .text(function(d) { return d; })
+      .on("click", sortAndFilter);
+
+  // add search box
+  var searchField = d3.select("#search").append("input")
+      .attr("placeholder", "Search for names, industries, titles, companies, locations...")
       .style("width", "100%")
-      .on("keyup", function() {
-        var value = this.value.toLowerCase();
-        d3.select("#names").classed("searching", value.length > 0);
-        nameList.style("display", "inline-block");
-        nameList.filter(function(d) {
-          // case-insensitive; searches all `properties` of `names`
-          return properties.reduce(function(a,b) { return a && d[b].toLowerCase().indexOf(value) == -1 }, true);
-        }).style("display", "none");
-      });
+      .on("keyup", search);
 
-  /*
-  nameList.sort(function(a, b) {
-    // sort by specified property `d` and then by `config.key`
-    return a[d] < b[d] ? -1 : a[d] > b[d] ? 1 : a[d] >= b[d] ? (a[config.key] < b[config.key] ? -1 : a[config.key] > b[config.key] ? 1 : 0) : NaN;
-  });
-  */
+  // on load, initial sort and filter is 'All'
+  sortAndFilter.call(filterButtons.filter(function(d) { return d=='All'; }).node(), 'All');
+
+  function sortAndFilter(d) {
+    // fade everything out
+    nameList.style("opacity", .3);
+    nameList.sort(function(a,b) {
+      // sort first by filter, and then by name (Last, First)
+      if (config.filters[d](a) == config.filters[d](b)) {
+        return a["Last"] < b["Last"] ? -1 : a["Last"] > b["Last"] ? 1 : (a["First"] < b["First"] ? -1 : 1);
+      } else {
+        return config.filters[d](a) > config.filters[d](b) ? -1 : 1;
+      }
+    })
+    // highlight matching names
+    nameList.filter(config.filters[d]).style("opacity", 1);
+    // show button selection
+    d3.selectAll(".filter.selected").classed("selected", false);
+    d3.select(this).classed("selected", true);
+  }
+
+  function search() {
+    // case-insensitive
+    var value = this.value.toLowerCase();
+    // class the whole names container to show expanded detail boxes even when not hovering
+    d3.select("#names").classed("searching", value.length > 0);
+    // hide everything
+    nameList.style("display", "none");
+    // show everything that matches
+    nameList.filter(function(d) {
+      // case-insensitive; searches all `properties` of `names`
+      return properties.reduce(function(a,b) { return a || d[b].toLowerCase().indexOf(value) !== -1 }, false);
+    }).style("display", "inline-block");
+  }
 
 })
