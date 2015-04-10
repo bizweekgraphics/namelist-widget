@@ -165,6 +165,7 @@ body {
 
 #names[data-filter="Sports"], #names[data-filter="Finance"] {
   .name {
+    height: 4em;
     p[data-property="topline"] {
       display: none;
     }
