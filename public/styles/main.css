@@ -125,17 +125,6 @@ body {
 #names .name .name-inner p[data-property="location"] {
   display: none; }
 
-#names .name:hover .name-inner p[data-property="name"] {
-  display: block; }
-#names .name:hover .name-inner p[data-property="topline"] {
-  display: block; }
-#names .name:hover .name-inner p[data-property="company"] {
-  display: none; }
-#names .name:hover .name-inner p[data-property="affiliation"] {
-  display: block; }
-#names .name:hover .name-inner p[data-property="location"] {
-  display: block; }
-
 #names[data-filter="Sports"] .name .name-inner p[data-property="name"] {
   display: block; }
 #names[data-filter="Sports"] .name .name-inner p[data-property="topline"] {
@@ -157,6 +146,17 @@ body {
   display: none; }
 #names[data-filter="Finance"] .name .name-inner p[data-property="location"] {
   display: none; }
+
+#names[data-filter] .name:hover .name-inner p[data-property="name"] {
+  display: block; }
+#names[data-filter] .name:hover .name-inner p[data-property="topline"] {
+  display: block; }
+#names[data-filter] .name:hover .name-inner p[data-property="company"] {
+  display: none; }
+#names[data-filter] .name:hover .name-inner p[data-property="affiliation"] {
+  display: block; }
+#names[data-filter] .name:hover .name-inner p[data-property="location"] {
+  display: block; }
 
 #names.searching .name .name-inner p[data-property="name"] {
   display: block; }
